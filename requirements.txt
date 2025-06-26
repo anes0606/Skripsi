@@ -1,0 +1,10 @@
+streamlit
+nltk
+scikit-learn
+pandas
+numpy
+sastrawi
+matplotlib
+TfidfVectorizer
+pickle
+re
