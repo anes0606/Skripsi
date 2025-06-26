@@ -5,6 +5,5 @@ pandas
 numpy
 sastrawi
 matplotlib
-TfidfVectorizer
 pickle
 re
