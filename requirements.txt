@@ -1,9 +1,6 @@
 streamlit
-nltk
-scikit-learn
-pandas
 numpy
-sastrawi
+pandas
 matplotlib
-pickle
-re
+scikit-learn
+Sastrawi
