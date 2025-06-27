@@ -26,7 +26,7 @@ def stemmer(text):
 # ==============================
 # Judul Aplikasi
 # ==============================
-st.title('🔍 Analisis Sentimen Ulasan')
+st.title('🔍 Analisis Sentimen Ulasan Produk')
 st.write('Aplikasi ini memprediksi sentimen ulasan (positif/negatif) menggunakan model SVM')
 
 # Sidebar untuk informasi
@@ -37,6 +37,7 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 ''')
 
 # Fungsi untuk memuat model
+@st.cache_resource
 import gdown
 
 url = "https://drive.google.com/uc?export=download&id=1tuqMY82MmriSSjYheUD64AZINr5PXlle"
@@ -64,7 +65,7 @@ try:
         st.sidebar.warning("Informasi metrik model tidak tersedia.")
 
 except FileNotFoundError:
-    st.error("File model tidak ditemukan. Pastikan 'model_svm.pkl' ada di direktori yang sama.")
+    st.error("File model tidak ditemukan. Pastikan 'model_svm2.pkl' ada di direktori yang sama.")
     st.stop()
 except Exception as e:
     st.error(f"Terjadi kesalahan saat memuat model: {str(e)}")
@@ -74,7 +75,7 @@ except Exception as e:
 tab1, tab2, tab3 = st.tabs(["Prediksi", "Parameter Model", "Info Dataset"])
 
 with tab1:
-    user_input = st.text_area("Masukkan ulasan produk:")
+    user_input = st.text_area("Masukkan ulasan produk:", "Produk ini sangat bagus dan berkualitas...")
 
     if st.button('Prediksi Sentimen'):
         if model and tfidf:
@@ -381,7 +382,7 @@ with tab3:
 st.markdown("---")
 st.caption("""
 Aplikasi Analisis Sentimen - Dibangun dengan Streamlit dan Scikit-learn  
-© 2025 - Dibangun untuk demonstrasi klasifikasi teks
+© 2023 - Dibangun untuk demonstrasi klasifikasi teks
 """)
 
 # Tambahkan beberapa styling
