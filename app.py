@@ -35,9 +35,26 @@ st.sidebar.write('*Accuracy:* 89%')
 
 # Load model
 @st.cache_resource
+import pickle
+import gdown
+import streamlit as st
+
+@st.cache_resource
 def load_model():
-    with open('model_svm2.pkl', 'rb') as f:
-        return pickle.load(f)
+    # ID dari Google Drive
+    file_id = "1tuqMY82MmriSSjYheUD64AZINr5PXlle"
+    url = f"https://drive.google.com/uc?id={file_id}"
+
+    output_path = "model_svm.pkl"
+    
+    try:
+        gdown.download(url, output_path, quiet=False)
+        with open(output_path, "rb") as f:
+            model_package = pickle.load(f)
+        return model_package
+    except Exception as e:
+        st.error(f"Gagal memuat model dari Google Drive: {e}")
+        st.stop()
 
 model_package = load_model()
 model = model_package.get('model')
