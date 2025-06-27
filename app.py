@@ -97,30 +97,6 @@ with tab1:
             else:
                 st.error('❌ Sentimen Negatif')
 
-            # Coba tampilkan probabilitas jika tersedia
-            if hasattr(model, "predict_proba"):
-                try:
-                    proba = model.predict_proba(input_vector)[0]
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.metric("Probabilitas Positif", f"{proba[1]:.2%}")
-                    with col2:
-                        st.metric("Probabilitas Negatif", f"{proba[0]:.2%}")
-                    
-                    # Visualisasi probabilitas
-                    fig, ax = plt.subplots()
-                    ax.bar(['Negatif', 'Positif'], [proba[0], proba[1]], color=['red', 'green'])
-                    ax.set_ylim(0, 1)
-                    ax.set_ylabel('Probabilitas')
-                    ax.set_title('Distribusi Probabilitas Sentimen')
-                    st.pyplot(fig)
-                except:
-                    st.info("Model tidak dapat menghitung probabilitas.")
-            else:
-                st.info("Model tidak mendukung output probabilitas (`predict_proba`).")
-        else:
-            st.error("Model atau vectorizer tidak tersedia.")
-
 with tab2:
     st.subheader('Parameter Model Terbaik')
     
