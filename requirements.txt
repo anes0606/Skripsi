@@ -6,3 +6,4 @@ scikit-learn
 Sastrawi
 gdown
 seaborn
+SMOTE
