@@ -37,11 +37,19 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 ''')
 
 # Fungsi untuk memuat model
+import requests
+
 @st.cache_resource
 def load_model():
-    with open('model_svm2.pkl', 'rb') as f:
-        model_package = pickle.load(f)
-    return model_package
+    try:
+        url = "https://drive.google.com/uc?export=download&id=GANTI_DENGAN_FILE_ID"
+        response = requests.get(url)
+        response.raise_for_status()  # Deteksi error HTTP
+        model_package = pickle.loads(response.content)
+        return model_package
+    except Exception as e:
+        st.error(f"Gagal memuat model dari URL: {e}")
+        st.stop()
 
 # Memuat model
 try:
