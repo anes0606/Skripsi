@@ -64,7 +64,7 @@ try:
         st.sidebar.warning("Informasi metrik model tidak tersedia.")
 
 except FileNotFoundError:
-    st.error("File model tidak ditemukan. Pastikan 'model_svm2.pkl' ada di direktori yang sama.")
+    st.error("File model tidak ditemukan. Pastikan 'model_svm.pkl' ada di direktori yang sama.")
     st.stop()
 except Exception as e:
     st.error(f"Terjadi kesalahan saat memuat model: {str(e)}")
@@ -74,7 +74,7 @@ except Exception as e:
 tab1, tab2, tab3 = st.tabs(["Prediksi", "Parameter Model", "Info Dataset"])
 
 with tab1:
-    user_input = st.text_area("Masukkan ulasan produk:", "Produk ini sangat bagus dan berkualitas...")
+    user_input = st.text_area("Masukkan ulasan produk:")
 
     if st.button('Prediksi Sentimen'):
         if model and tfidf:
