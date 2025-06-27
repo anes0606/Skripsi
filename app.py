@@ -37,11 +37,11 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 ''')
 
 # Fungsi untuk memuat model
-@st.cache_resource
-def load_model():
-    with open('model_svm2.pkl', 'rb') as f:
-        model_package = pickle.load(f)
-    return model_package
+import gdown
+
+url = "https://drive.google.com/uc?export=download&id=1206IZvQOn4jX3HmKf0ojwuXFHOc0ilXM"
+output = "sentiment_analysis_simple.pkl"
+gdown.download(url, output, quiet=False)
 
 # Memuat model
 try:
