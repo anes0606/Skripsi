@@ -26,7 +26,7 @@ def stemmer(text):
 # ==============================
 # Judul Aplikasi
 # ==============================
-st.title('🔍 Analisis Sentimen Ulasan Produk')
+st.title('🔍 Analisis Sentimen Ulasan')
 st.write('Aplikasi ini memprediksi sentimen ulasan (positif/negatif) menggunakan model SVM')
 
 # Sidebar untuk informasi
