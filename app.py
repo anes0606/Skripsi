@@ -40,7 +40,7 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 import gdown
 
 url = "https://drive.google.com/uc?export=download&id=1tuqMY82MmriSSjYheUD64AZINr5PXlle"
-output = "model_svm2.pkl"
+output = "model_svm.pkl"
 gdown.download(url, output, quiet=False)
 
 # Memuat model
