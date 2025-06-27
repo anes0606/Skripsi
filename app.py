@@ -42,7 +42,7 @@ import requests
 @st.cache_resource
 def load_model():
     try:
-        url = "https://drive.google.com/uc?export=download&id=GANTI_DENGAN_FILE_ID"
+        url = "https://drive.google.com/file/d/1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ/view?usp=drive_link"
         response = requests.get(url)
         response.raise_for_status()  # Deteksi error HTTP
         model_package = pickle.loads(response.content)
