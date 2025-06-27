@@ -7,3 +7,4 @@ Sastrawi
 gdown
 seaborn
 SMOTE
+imbalanced-learn
