@@ -8,3 +8,4 @@ gdown
 seaborn
 SMOTE
 imbalanced-learn
+nltk
