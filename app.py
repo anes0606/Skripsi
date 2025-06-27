@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 import pandas as pd
 import re
+import gdown
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -34,12 +35,6 @@ st.sidebar.write('*Kernel:* Sigmoid')
 st.sidebar.write('*Accuracy:* 89%')
 
 # Load model
-@st.cache_resource
-import pickle
-import gdown
-import streamlit as st
-
-@st.cache_resource
 def load_model():
     # ID dari Google Drive
     file_id = "1tuqMY82MmriSSjYheUD64AZINr5PXlle"
