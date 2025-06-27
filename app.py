@@ -26,7 +26,7 @@ def stemmer(text):
 # ==============================
 # Judul Aplikasi
 # ==============================
-st.title('🔍 Analisis Sentimen Ulasan Produk')
+st.title('🔍 Analisis Sentimen Ulasan')
 st.write('Aplikasi ini memprediksi sentimen ulasan (positif/negatif) menggunakan model SVM')
 
 # Sidebar untuk informasi
@@ -38,17 +38,25 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 
 # Fungsi untuk memuat model
 import requests
+import pickle
+import gdown
+import streamlit as st
 
 @st.cache_resource
 def load_model():
-    url = "https://drive.google.com/uc?export=download&id=1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ"
+    # ID dari Google Drive
+    file_id = "1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ"
+    url = f"https://drive.google.com/uc?id={file_id}"
+
+    output_path = "model_svm2.pkl"
+    
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        model_package = pickle.loads(response.content)
+        gdown.download(url, output_path, quiet=False)
+        with open(output_path, "rb") as f:
+            model_package = pickle.load(f)
         return model_package
     except Exception as e:
-        st.error(f"Gagal memuat model dari URL: {e}")
+        st.error(f"Gagal memuat model dari Google Drive: {e}")
         st.stop()
 
 # Memuat model
