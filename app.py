@@ -37,7 +37,6 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 ''')
 
 # Fungsi untuk memuat model
-@st.cache_resource
 import gdown
 
 url = "https://drive.google.com/uc?export=download&id=1tuqMY82MmriSSjYheUD64AZINr5PXlle"
