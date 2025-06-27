@@ -39,8 +39,8 @@ yang telah dilatih untuk mengklasifikasikan sentimen ulasan produk.
 # Fungsi untuk memuat model
 import gdown
 
-url = "https://drive.google.com/uc?export=download&id=1206IZvQOn4jX3HmKf0ojwuXFHOc0ilXM"
-output = "sentiment_analysis_simple.pkl"
+url = "https://drive.google.com/uc?export=download&id=1tuqMY82MmriSSjYheUD64AZINr5PXlle"
+output = "model_svm2.pkl"
 gdown.download(url, output, quiet=False)
 
 # Memuat model
