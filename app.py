@@ -381,7 +381,7 @@ with tab3:
 st.markdown("---")
 st.caption("""
 Aplikasi Analisis Sentimen - Dibangun dengan Streamlit dan Scikit-learn  
-© 2023 - Dibangun untuk demonstrasi klasifikasi teks
+© 2025 - Dibangun untuk demonstrasi klasifikasi teks
 """)
 
 # Tambahkan beberapa styling
