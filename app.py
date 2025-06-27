@@ -41,10 +41,10 @@ import requests
 
 @st.cache_resource
 def load_model():
+    url = "https://drive.google.com/uc?export=download&id=1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ"
     try:
-        url = "https://drive.google.com/file/d/1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ/view?usp=drive_link"
         response = requests.get(url)
-        response.raise_for_status()  # Deteksi error HTTP
+        response.raise_for_status()
         model_package = pickle.loads(response.content)
         return model_package
     except Exception as e:
