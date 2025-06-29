@@ -37,10 +37,10 @@ st.sidebar.write('*Accuracy:* 89%')
 # Load model
 def load_model():
     # ID dari Google Drive
-    file_id = "1tuqMY82MmriSSjYheUD64AZINr5PXlle"
+    file_id = "1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y"
     url = f"https://drive.google.com/uc?id={file_id}"
 
-    output_path = "model_svm.pkl"
+    output_path = "model.pkl"
     
     try:
         gdown.download(url, output_path, quiet=False)
