@@ -35,22 +35,47 @@ st.sidebar.write('*Accuracy:* 89%')
 
 # Load model
 @st.cache_resource
-@st.cache_resource
 def load_model():
-    # ID dari Google Drive
-    file_id = "1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y"
-    url = f"https://drive.google.com/uc?id={file_id}"
-    
-    # Nama file hasil download
-    output_path = "model.pkl"
+    try:
+        import gdown
+        import pickle
+        import os
+        import streamlit as st
+        
+        # ID dari Google Drive
+        file_id = "1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y"
+        url = f"https://drive.google.com/uc?id={file_id}"
+        
+        # Nama file hasil download
+        output_path = "model.pkl"
 
-    # Cek apakah file sudah ada, kalau belum maka unduh
-    if not os.path.exists(output_path):
-        gdown.download(url, output_path, quiet=False)
+        # Cek apakah file sudah ada, kalau belum maka unduh
+        if not os.path.exists(output_path):
+            st.info("Downloading model file...")
+            gdown.download(url, output_path, quiet=False)
+            st.success("Model downloaded successfully!")
+            
+            # Verifikasi file terdownload
+            if not os.path.exists(output_path):
+                raise FileNotFoundError("Download failed - file not created")
 
-    # Muat model
-    with open(output_path, "rb") as f:
-        return pickle.load(f)
+        # Muat model dengan error handling
+        st.info("Loading model...")
+        try:
+            with open(output_path, "rb") as f:
+                model = pickle.load(f)
+            st.success("Model loaded successfully!")
+            return model
+        except Exception as e:
+            st.error(f"Failed to load model: {str(e)}")
+            # Hapus file corrupt jika ada
+            if os.path.exists(output_path):
+                os.remove(output_path)
+            raise
+
+    except Exception as e:
+        st.error(f"Model initialization failed: {str(e)}")
+        raise
         
 model_package = load_model()
 model = model_package.get('model')
