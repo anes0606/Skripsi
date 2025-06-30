@@ -9,3 +9,4 @@ seaborn
 SMOTE
 imbalanced-learn
 nltk
+request
