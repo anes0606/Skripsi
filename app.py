@@ -51,20 +51,16 @@ def load_model():
 
         # Cek apakah file sudah ada, kalau belum maka unduh
         if not os.path.exists(output_path):
-            st.info("Downloading model file...")
             gdown.download(url, output_path, quiet=False)
-            st.success("Model downloaded successfully!")
             
             # Verifikasi file terdownload
             if not os.path.exists(output_path):
                 raise FileNotFoundError("Download failed - file not created")
 
         # Muat model dengan error handling
-        st.info("Loading model...")
         try:
             with open(output_path, "rb") as f:
                 model = pickle.load(f)
-            st.success("Model loaded successfully!")
             return model
         except Exception as e:
             st.error(f"Failed to load model: {str(e)}")
