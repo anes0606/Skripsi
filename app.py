@@ -4,7 +4,6 @@ import pickle
 import pandas as pd
 import re
 import gdown
-import request
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
 
