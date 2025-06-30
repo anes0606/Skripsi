@@ -36,21 +36,30 @@ st.sidebar.write('*Accuracy:* 89%')
 
 # Load model
 @st.cache_resource
-def load_model():
-    # ID dari Google Drive
-    file_id = "1wS9BPwcr2ol5dYJ4k1msDMTKnG6FXxL6"
-    url = f"https://drive.google.com/uc?export=download&id"
+import pickle
+import requests
 
+def load_model():
+    file_id = "1wS9BPwcr2ol5dYJ4k1msDMTKnG6FXxL6"
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
     output_path = "model.pkl"
-    
+
     try:
-        gdown.download(url, output_path, quiet=False)
+        response = requests.get(url)
+        response.raise_for_status()  # cek kalau gagal ambil file
+
+        # Simpan file ke lokal
+        with open(output_path, "wb") as f:
+            f.write(response.content)
+
+        # Load model
         with open(output_path, "rb") as f:
-            model_package = pickle.load(f)
-        return model_package
+            model = pickle.load(f)
+
+        return model
+
     except Exception as e:
-        st.error(f"Gagal memuat model dari Google Drive: {e}")
-        st.stop()
+        raise RuntimeError(f"Gagal memuat model dari Google Drive: {e}")
 
 model_package = load_model()
 model = model_package.get('model')
