@@ -4,6 +4,7 @@ import pickle
 import pandas as pd
 import re
 import gdown
+import request
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -36,9 +37,6 @@ st.sidebar.write('*Accuracy:* 89%')
 
 # Load model
 @st.cache_resource
-import pickle
-import requests
-
 def load_model():
     file_id = "1wS9BPwcr2ol5dYJ4k1msDMTKnG6FXxL6"
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
