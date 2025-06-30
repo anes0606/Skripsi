@@ -3,7 +3,6 @@ import numpy as np
 import pickle
 import pandas as pd
 import re
-import gdown
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -21,7 +20,7 @@ def stemmer(text):
     return stemmer_engine.stem(text)
 
 # App title
-st.title('🔍 Analisis Sentimen Ulasan')
+st.title('🔍 Analisis Sentimen Ulasan Produk')
 st.write('Aplikasi ini memprediksi sentimen ulasan (positif/negatif) menggunakan model SVM')
 
 # Sidebar Animation and Information
@@ -37,27 +36,16 @@ st.sidebar.write('*Accuracy:* 89%')
 # Load model
 @st.cache_resource
 def load_model():
-    file_id = "1wS9BPwcr2ol5dYJ4k1msDMTKnG6FXxL6"
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    url = "https://drive.google.com/uc?export=download&id=1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y
     output_path = "model.pkl"
 
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # cek kalau gagal ambil file
+    # Cek apakah file sudah ada, kalau belum maka unduh
+    if not os.path.exists(output_path):
+        gdown.download(url, output_path, quiet=False)
 
-        # Simpan file ke lokal
-        with open(output_path, "wb") as f:
-            f.write(response.content)
-
-        # Load model
-        with open(output_path, "rb") as f:
-            model = pickle.load(f)
-
-        return model
-
-    except Exception as e:
-        raise RuntimeError(f"Gagal memuat model dari Google Drive: {e}")
-
+    # Muat model
+    with open(output_path, "rb") as f:
+        return pickle.load(f)
 model_package = load_model()
 model = model_package.get('model')
 tfidf = model_package.get('tfidf_vectorizer')
