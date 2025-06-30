@@ -37,7 +37,7 @@ st.sidebar.write('*Accuracy:* 89%')
 # Load model
 def load_model():
     # ID dari Google Drive
-    file_id = "1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y"
+    file_id = "1wS9BPwcr2ol5dYJ4k1msDMTKnG6FXxL6"
     url = f"https://drive.google.com/uc?id={file_id}"
 
     output_path = "model.pkl"
