@@ -35,6 +35,7 @@ st.sidebar.write('*Kernel:* Sigmoid')
 st.sidebar.write('*Accuracy:* 89%')
 
 # Load model
+@st.cache_resource
 def load_model():
     # ID dari Google Drive
     file_id = "1wS9BPwcr2ol5dYJ4k1msDMTKnG6FXxL6"
