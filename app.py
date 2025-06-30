@@ -20,7 +20,7 @@ def stemmer(text):
     return stemmer_engine.stem(text)
 
 # App title
-st.title('🔍 Analisis Sentimen Ulasan Produk')
+st.title('🔍 Analisis Sentimen Ulasan')
 st.write('Aplikasi ini memprediksi sentimen ulasan (positif/negatif) menggunakan model SVM')
 
 # Sidebar Animation and Information
