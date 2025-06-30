@@ -36,8 +36,9 @@ st.sidebar.write('*Accuracy:* 89%')
 # Load model
 @st.cache_resource
 def load_model():
-    url = "https://drive.google.com/uc?export=download&id=1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y
-    output_path = "model.pkl"
+    # ID dari Google Drive
+    file_id = "1Q55y6sooYhckIRlkKCxj18CndxOtPX2Y"
+    url = f"https://drive.google.com/uc?id={file_id}"
 
     # Cek apakah file sudah ada, kalau belum maka unduh
     if not os.path.exists(output_path):
@@ -46,6 +47,7 @@ def load_model():
     # Muat model
     with open(output_path, "rb") as f:
         return pickle.load(f)
+        
 model_package = load_model()
 model = model_package.get('model')
 tfidf = model_package.get('tfidf_vectorizer')
