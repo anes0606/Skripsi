@@ -20,27 +20,26 @@ stemmer_engine = factory.create_stemmer()
 def stemmer(text):
     return stemmer_engine.stem(text)
 
-# Load model
-import gdown
-import pickle
-import os
+# ID File Google Drive untuk Model
+FILES = {
+    "svm": "1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ"
+}
 
-def load_model_from_drive():
-    # ID file Google Drive atau direct download link
-    url = "https://drive.google.com/uc?id=1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ"
-    output = "model_svm.pkl"
-
-    # Download hanya jika file belum ada
+# Fungsi download file dari Google Drive
+@st.cache_resource
+def download_model(file_id, output):
     if not os.path.exists(output):
-        print("Downloading model from Google Drive...")
-        gdown.download(url, output, quiet=False)
-    else:
-        print("Model already downloaded.")
+        url = f"https://drive.google.com/uc?id={file_id}"
+        with st.spinner(f"Mengunduh {output} dari Google Drive..."):
+            gdown.download(url, output, fuzzy=True, quiet=False)
+    return joblib.load(output)
 
-    # Load model dengan pickle
-    with open(output, 'rb') as f:
-        model = pickle.load(f)
-    return model
+# Load model meta learning
+@st.cache_resource
+def load_models():
+    return {model: download_model(FILES[model], f"{model.lower().replace(' ', '_')}.pkl") for model in FILES}
+
+models = load_models()
 
 # Contoh pemanggilan
 if __name__ == "__main__":
