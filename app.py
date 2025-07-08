@@ -21,9 +21,32 @@ def stemmer(text):
     return stemmer_engine.stem(text)
 
 # Load model
-def load_model():
-    with open('model_svm2.pkl', 'rb') as f:
-        return pickle.load(f)
+import gdown
+import pickle
+import os
+
+def load_model_from_drive():
+    # ID file Google Drive atau direct download link
+    url = "https://drive.google.com/uc?id=1REfLDd3A4L0qsuAunNg2f5eP1sDce8sZ"
+    output = "model_svm.pkl"
+
+    # Download hanya jika file belum ada
+    if not os.path.exists(output):
+        print("Downloading model from Google Drive...")
+        gdown.download(url, output, quiet=False)
+    else:
+        print("Model already downloaded.")
+
+    # Load model dengan pickle
+    with open(output, 'rb') as f:
+        model = pickle.load(f)
+    return model
+
+# Contoh pemanggilan
+if __name__ == "__main__":
+    model = load_model_from_drive()
+    print("Model berhasil dimuat!")
+
 
 model_package = load_model()
 model = model_package['model']
