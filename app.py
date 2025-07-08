@@ -47,8 +47,6 @@ if __name__ == "__main__":
     model = load_model_from_drive()
     print("Model berhasil dimuat!")
 
-
-model_package = load_model()
 model = model_package['model']
 tfidf = model_package['tfidf_vectorizer']
 
